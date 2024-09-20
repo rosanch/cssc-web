@@ -14,7 +14,8 @@
 }
 
 .oops-message {
-  color: white;
+  color: #ff7373; /* A light coral color for better contrast */
   font-size: 1.5rem;
+  font-weight: bold;
   text-align: center;
 }

@@ -20,10 +20,9 @@ const VisualLoader: React.FC<VisualLoaderProps> = ({ selectedImage }) => {
     content = <img src={T3} alt="T3" className="visual-image" />;
   } else if (selectedImage === "OOPS") {
     content = (
-      <p className="oops-message">
-        OOPS! Demo credits exceeded.<br />
-        Please upgrade to premium for the full experience.
-      </p>
+      <div className="oops-message">
+        OOPS! Demo credits exceeded. <br /> Please upgrade to premium for the full experience.
+      </div>
     );
   } else {
     // When no image is selected and not in the "OOPS" state, show nothing
