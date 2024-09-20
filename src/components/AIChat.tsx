@@ -2,27 +2,21 @@ import React, { useState } from 'react';
 import '../styles/AIChat.css';
 
 interface AIChatProps {
-  onUserMessage: (message: string) => Promise<string>; // Prop to handle the message and return AI response
+  onUserMessage: (message: string) => void; // Prop to handle the message
+  messages: { type: 'ai' | 'user'; text: string }[]; // Prop to receive messages from App
 }
 
-const AIChat: React.FC<AIChatProps> = ({ onUserMessage }) => {
-  const [messages, setMessages] = useState<{ type: 'ai' | 'user'; text: string }[]>([]);
+const AIChat: React.FC<AIChatProps> = ({ onUserMessage, messages }) => {
   const [input, setInput] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
 
-    // Add user message to chat
-    setMessages((prevMessages) => [...prevMessages, { type: 'user', text: input }]);
+    // Pass the user input message to App for handling
+    onUserMessage(input);
 
-    // Get the custom AI response from the parent component
-    const aiResponse = await onUserMessage(input);
-
-    // Add AI response to chat
-    setMessages((prevMessages) => [...prevMessages, { type: 'ai', text: aiResponse }]);
-
-    // Clear input
+    // Clear the input field immediately after sending the message
     setInput('');
   };
 
