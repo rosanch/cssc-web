@@ -9,28 +9,45 @@ function App() {
   const [t2Credit, setT2Credit] = useState<boolean>(true); // Tracks matched key phrases
   const [t3Credit, setT3Credit] = useState<boolean>(true); // Tracks matched key phrases
 
-  // Function to handle user messages and detect key phrases
-  const handleUserMessage = (message: string) => {
-    const hasCredit = t1Credit || t2Credit || t3Credit;
+  const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-    // Load images based on key phrases
-    if (message.includes("what are dependencies") && hasCredit) {
+  const t1 = "Musl is a lightweight, fast, simple, and secure C library that is used as the standard C library in Alpine Linux distribution. It is smaller and more secure than the more commonly used GNU C Library (glibc) and provides all the necessary functionality required by the C standard library.";
+  const t2 = "The image impacted by CVE-2019-14697 is 'docker.io/library/alpine'."
+  const t3 = "The dependencies of the alpine image are: apk-tools, scanelf, musl, ssl_client, alpine-baselayout, libressl2.6-libtls, busybox, libc-utils, alpine-keys, libressl2.6-libssl, zlib, musl-utils, and libressl2.6-libcrypto."
+  
+
+  // Function to handle user messages and detect key phrases with custom responses
+  const handleUserMessage = async (message: string): Promise<string> => {
+    const hasCredit = t1Credit || t2Credit || t3Credit;
+    let aiResponse = "AI is processing your request...";
+
+    const lowerCaseMessage = message.toLowerCase();
+    if (lowerCaseMessage.includes("what are the dependencies") && hasCredit) {
+      await delay(7000);
       setSelectedImage("T1");
       setT1Credit(false);
-    } else if (message.includes("images are impacted") && hasCredit) {
+      aiResponse = t1;
+    } else if (lowerCaseMessage.includes("images are impacted") && hasCredit) {
+      await delay(2000);
       setSelectedImage("T2");
       setT2Credit(false);
-    } else if (message.includes("describe dependency") && hasCredit) {
+      aiResponse = t2;
+    } else if (lowerCaseMessage.includes("describe dependency") && hasCredit) {
+      await delay(5000);
       setSelectedImage("T3");
       setT3Credit(false);
+      aiResponse = t3;
     } else {
-      // If all matches have been made, show the OOPS message, otherwise show empty
       if (!hasCredit) {
         setSelectedImage("OOPS");
+        aiResponse = "OOPS! Demo credits exceeded. Please upgrade to premium for the full experience.";
       } else {
         setSelectedImage(null);
+        aiResponse = "I don't understand the request. No matches found for your query.";
       }
     }
+
+    return aiResponse;
   };
 
   return (
