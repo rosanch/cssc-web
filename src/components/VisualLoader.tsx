@@ -13,11 +13,11 @@ const VisualLoader: React.FC<VisualLoaderProps> = ({ selectedImage }) => {
 
   // Determine what content to display based on the selectedImage prop
   if (selectedImage === "T1") {
-    content = <img src={T1} alt="T1 Image" className="visual-image" />;
+    content = <img src={T1} alt="T1" className="visual-image" />;
   } else if (selectedImage === "T2") {
-    content = <img src={T2} alt="T2 Image" className="visual-image" />;
+    content = <img src={T2} alt="T2" className="visual-image" />;
   } else if (selectedImage === "T3") {
-    content = <img src={T3} alt="T3 Image" className="visual-image" />;
+    content = <img src={T3} alt="T3" className="visual-image" />;
   } else if (selectedImage === "OOPS") {
     content = (
       <p className="oops-message">
