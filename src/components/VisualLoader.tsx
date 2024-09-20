@@ -1,37 +1,38 @@
 import React from 'react';
+import T1 from '../img/T1.png';
+import T2 from '../img/T2.png';
+import T3 from '../img/T3.png';
 import '../styles/VisualLoader.css';
-
-import Q1 from '../img/Q1.png';
-import Q2 from '../img/Q2.png';
-import Q3 from '../img/Q3.png';
 
 interface VisualLoaderProps {
   selectedImage: string | null;
 }
 
 const VisualLoader: React.FC<VisualLoaderProps> = ({ selectedImage }) => {
-  const renderContent = () => {
-    if (selectedImage === "Q1") {
-      return <img src={Q1} alt="Q1 Diagram" />;
-    } else if (selectedImage === "Q2") {
-      return <img src={Q2} alt="Q2 Diagram" />;
-    } else if (selectedImage === "Q3") {
-      return <img src={Q3} alt="Q3 Diagram" />;
-    } else if (selectedImage === "OOPS") {
-      return (
-        <p>
-          OOPS! Demo credits exceeded.<br />
-          Please upgrade to premium for the full experience.
-        </p>
-      );
-    } else {
-      return <p></p>; // Default to empty string if no matches are made yet
-    }
-  };
+  let content;
+
+  // Determine what content to display based on the selectedImage prop
+  if (selectedImage === "T1") {
+    content = <img src={T1} alt="T1 Image" className="visual-image" />;
+  } else if (selectedImage === "T2") {
+    content = <img src={T2} alt="T2 Image" className="visual-image" />;
+  } else if (selectedImage === "T3") {
+    content = <img src={T3} alt="T3 Image" className="visual-image" />;
+  } else if (selectedImage === "OOPS") {
+    content = (
+      <p className="oops-message">
+        OOPS! Demo credits exceeded.<br />
+        Please upgrade to premium for the full experience.
+      </p>
+    );
+  } else {
+    // When no image is selected and not in the "OOPS" state, show nothing
+    content = null;
+  }
 
   return (
-    <div className="visualizer-content">
-      {renderContent()}
+    <div className="visual-loader">
+      {content}
     </div>
   );
 };
