@@ -13,9 +13,9 @@ function App() {
   // Delays for image loading and AI response separately
   const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-  const t1 = "Musl is a lightweight, fast, simple, and secure C library that is used as the standard C library in Alpine Linux distribution. It is smaller and more secure than the more commonly used GNU C Library (glibc) and provides all the necessary functionality required by the C standard library.";
+  const t1 = "The dependencies of the alpine image are: apk-tools, scanelf, musl, ssl_client, alpine-baselayout, libressl2.6-libtls, busybox, libc-utils, alpine-keys, libressl2.6-libssl, zlib, musl-utils, and libressl2.6-libcrypto.";
   const t2 = "The image impacted by CVE-2019-14697 is 'docker.io/library/alpine'.";
-  const t3 = "The dependencies of the alpine image are: apk-tools, scanelf, musl, ssl_client, alpine-baselayout, libressl2.6-libtls, busybox, libc-utils, alpine-keys, libressl2.6-libssl, zlib, musl-utils, and libressl2.6-libcrypto.";
+  const t3 = "libc is a lightweight, fast, simple, and secure C library that is used as the standard C library in Alpine Linux distribution. It is smaller and more secure than the more commonly used GNU C Library (glibc) and provides all the necessary functionality required by the C standard library.";
 
   // Handle user message
   const handleUserMessage = async (message: string) => {
